@@ -10,10 +10,12 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
+import com.example.petshop.Adapter.BestSellerAdapter
 import com.example.petshop.Adapter.CategoryAdapter
 import com.example.petshop.Adapter.SliderAdapter
 import com.example.petshop.Model.SliderModel
@@ -32,6 +34,17 @@ class MainActivity : BaseActivity() {
 
         initBanners()
         initCategories()
+        initBestSeller()
+    }
+
+    private fun initBestSeller() {
+        binding.progressBarBestSeller.visibility = View.VISIBLE
+        viewModel.bestSeller.observe(this, Observer {
+            binding.viewBestSeller.layoutManager = GridLayoutManager(this, 2)
+            binding.viewBestSeller.adapter = BestSellerAdapter(it)
+            binding.progressBarBestSeller.visibility = View.GONE
+        })
+        viewModel.loadBestSeller()
     }
 
     private fun initCategories() {
