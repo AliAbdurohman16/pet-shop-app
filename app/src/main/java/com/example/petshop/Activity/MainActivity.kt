@@ -1,5 +1,6 @@
 package com.example.petshop.Activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -35,6 +36,11 @@ class MainActivity : BaseActivity() {
         initBanners()
         initCategories()
         initBestSeller()
+        bottomNavigation()
+    }
+
+    private fun bottomNavigation() {
+        binding.cartBtn.setOnClickListener { startActivity(Intent(this, CartActivity::class.java)) }
     }
 
     private fun initBestSeller() {

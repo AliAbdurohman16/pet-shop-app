@@ -68,7 +68,7 @@ class DetailActivity : BaseActivity() {
         binding.titleTxt.text = item.title
         binding.descriptionTxt.text = item.description
         binding.priceTxt.text = "$" + item.price
-        binding.ratingTxt.text = "${item.rating} Rating"
+        binding.ratingTxt.text = "${item.rating}"
         binding.SellerNameTxt.text = item.sellerName
 
         binding.AddToCartBtn.setOnClickListener {
@@ -78,7 +78,7 @@ class DetailActivity : BaseActivity() {
 
         binding.backBtn.setOnClickListener { finish() }
         binding.CartBtn.setOnClickListener {
-
+            startActivity(Intent(this@DetailActivity, CartActivity::class.java))
         }
 
         Glide.with(this)
